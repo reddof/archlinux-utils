@@ -4,6 +4,8 @@
 >INI ADALAH SCRIPT PRIBADI UNTUK KEPERLUAN INSTALL ULANG, TAPI SIAPAPUN BOLEH MENGGUNAKAN. 
 >SAYA TIDAK BERTANGGUNGJAWAB KALAU ADA ERROR.
 
+![screenshot](https://github.com/reddof/archlinux-utils/blob/main/sub/screenshot/Screenshot_20231106_230646.png?raw=true)
+
 Didalam Script ini saya kumpulkan berbagai commands , diantaranya adalah 
 Install Arch Linux, Install DE, Install Third Party packages, 
 Install packages yang biasa kita gunakan sehari hari, Packages Updater, dll. 
