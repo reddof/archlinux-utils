@@ -32,4 +32,6 @@ cd /archlinux-utils
 sudo ./start.sh
 ```
 
+credit .oh-my-zsh : https://ohmyz.sh/
+
 Tekan titik dua dan q (:q) untuk keluar vim.
