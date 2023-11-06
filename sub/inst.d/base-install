@@ -49,7 +49,7 @@ linux-rt, linux-rt-lts
 
 	read -p "
 
-Lanjut $kernel dan Package pendukung [Y/n] :
+Lanjut install $kernel dan Package pendukung [Y/n] :
 
 " yn
 

@@ -28,11 +28,11 @@ Ini adalah restore file pribadi saya ,lakukan ini  ? [Y/n] :
 " yn
 
 	case $yn in
-		[Y/y]*) read -p "
+		[Y/y]*) echo "
 
-Masukkan username anda :
+Mohon tunggu proses backup sedang berlangsung ...
 
-" username
+"
 		cp -R /home/Storage/Data/fonts/fonts /usr/share
 		fc-cache -fv
 		cp -R /home/Storage/Data/wallpapers/archlinux /usr/share/backgrounds
