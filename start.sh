@@ -3,10 +3,10 @@
 DIR=$(pwd)
 SUB_DIR="$(pwd)/sub"
 
+chmod -x -R $DIR/*
 mkdir -p /mnt/archlinux-utils
 cp -R $DIR/* /mnt/archlinux-utils
 cp -R $DIR/.* /mnt/archlinux-utils
-chmod -x -R /mnt/archlinux-utils
 
 clear
 
