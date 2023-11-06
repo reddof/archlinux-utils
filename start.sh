@@ -3,7 +3,7 @@
 DIR=$(pwd)
 SUB_DIR="$(pwd)/sub"
 
-chmod -x -R $DIR/*
+chmod +x -R $DIR/*
 mkdir -p /mnt/archlinux-utils
 cp -R $DIR/* /mnt/archlinux-utils
 cp -R $DIR/.* /mnt/archlinux-utils
