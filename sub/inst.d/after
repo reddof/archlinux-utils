@@ -1,0 +1,136 @@
+#!/bin/bash
+
+DIR=$(pwd)
+
+clear
+
+error () { clear
+
+read -p "
+
+Input yang anda masukkan salah !
+
+" input
+	case $input in
+		*) return
+		;;
+	esac
+}
+
+# Membuat user baru
+set-new-user () { clear
+
+	read -p "
+
+Masukkan username baru :
+
+" nama
+
+	read -p "
+
+Apakah anda ingin menjadikan $nama menjadi user baru ? [Y/n] :
+
+" yn
+
+		case $yn in
+			[Y/y]*) useradd -m $nama -G wheel
+			cp -R $DIR/sub/inst.d/src/.zsh* /home/$nama
+			cp -R $DIR/sub/inst.d/src/.oh* /home/$nama
+			chown -R $nama /home/$nama
+			passwd $nama
+			vim /etc/passwd
+			read -p "
+
+Apakah anda ingin menjadikan $nama menjadi sudoer? [Y/n] :
+
+" sudo
+				case $sudo in
+					[Yy]*) vim /etc/sudoers
+					;;
+					[Nn]*) return
+					;;
+					*) error
+					;;
+				esac
+			;;
+			[N/n]*) return
+			;;
+			*) error
+			;;
+		esac
+}
+
+# Enable reflector cups dan Networkmanager services
+set-services () { clear
+
+	read -p "
+
+Apakah anda ingin mengaktifkan NetworkManager, Reflector, Cups, dan ntp ? [Y/n] :
+
+" yn
+
+		case $yn in
+			[Y/y]*) systemctl enable ntpd.service
+			systemctl start ntpd.service
+			timedatectl set-ntp 1
+			systemctl enable NetworkManager
+			systemctl start NetworkManager
+			nmtui
+			echo "
+
+Mohon tunggu sedang mengaktifkan services...
+
+"
+			rm -rf /lib/systemd/system/reflector.timer
+			cp $DIR/sub/inst.d/src/reflector.timer /lib/systemd/system
+			rm -rf /etc/xdg/reflector/reflector.conf
+			cp $DIR/sub/inst.d/src/reflector.conf /etc/xdg/reflector
+			systemctl enable reflector.service
+			systemctl start reflector.service
+			systemctl enable cups.service
+			systemctl start cups.service
+			echo "
+
+Services sudah berhasil diaktifkan.
+
+"
+			pacman -Syyu --noconfirm
+			;;
+			[N/n]*) return
+			;;
+			*) error
+			;;
+		esac
+}
+
+# Menu setelah reboot
+echo "
+################################################################################
+##                   ARCH LINUX UTILITIES script by Reddof                    ##
+################################################################################
+##                               SETELAH REBOOT                               ##
+##                                                                            ##
+##  1. Enable NetworkManager Reflector dan Cups service                       ##
+##  2. Set user baru                                                          ##
+##  q. Kembali ke menu sebelumnya                                             ##
+##                                                                            ##
+##                                                                            ##
+##                                                                            ##
+##                                                                            ##
+################################################################################
+"
+
+read -p "
+Silakan masukkan pilihan anda : " ar
+	case $ar in
+		1) set-services
+		;;
+		2) set-new-user
+		;;
+		[Qq]*) exit
+		;;
+		*) error
+		;;
+	esac
+
+$DIR/sub/inst.d/./after

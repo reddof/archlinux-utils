@@ -1,0 +1,120 @@
+#!/bin/bash
+
+DIR=$(pwd)
+INST_DIR="$(pwd)/sub/inst.d"
+
+clear
+
+error () { clear
+
+read -p "
+
+Input yang anda masukkan salah !
+
+" input
+	case $input in
+		*) return
+		;;
+	esac
+}
+
+# Restore settings dan files pribadi.
+set-restore () { clear
+
+read -p "
+
+Ini adalah restore file pribadi saya ,lakukan ini  ? [Y/n] :
+
+" yn
+
+	case $yn in
+		[Y/y]*) read -p "
+
+Masukkan username anda :
+
+" username
+
+		cp -R /home/Storage/Data/fonts/fonts /usr/share
+		fc-cache -fv
+		cp -R /home/Storage/Data/wallpapers/archlinux /usr/share/backgrounds
+		;;
+		[N/n]*) return
+		;;
+		*) error
+		;;
+esac
+}
+
+# Setting pacman ke server lokal dengan reflector
+set-reflector () { clear
+
+read -p "
+
+Setting server repository dari negara kita.
+Masukkan Nama negara misalnya Indonesia,
+Atau kode negara misalnya ID untuk Indonesia :
+
+" negara
+
+read -p "
+
+Apakah anda ingin set server ke negara $negara ? [Y/n] :
+
+" yn
+
+	case $yn in
+		[Y/y]*) sudo reflector -p http,https --country $negara --latest 10 --fastest 5 --save /etc/pacman.d/mirrorlist
+			echo "
+
+Mohon tunggu sedang merubah server repository...
+"
+			sudo pacman -Sy archlinux-keyring --noconfirm --overwrite "*"
+		;;
+		[N/n]*) return
+		;;
+		*) error
+		;;
+	esac
+
+}
+
+# Install menu
+echo "
+################################################################################
+##                   ARCH LINUX UTILITIES script by Reddof                    ##
+################################################################################
+##                                 INSTALL                                    ##
+##                                                                            ##
+##  1. Setting reflector ke server Indonesia                                  ##
+##  2. Arch Install                                                           ##
+##  3. Install Third Parties Packages                                         ##
+##  4. Install Desktop Environment                                            ##
+##  5. Restore Settings dan FIles Pribadi                                     ##
+##  q. Kembali ke Menu Sebelumnya                                             ##
+##                                                                            ##
+################################################################################
+"
+
+read -p "
+
+Silakan masukkan pilihan anda :
+
+" util
+	case $util in
+		1) set-reflector
+		;;
+		2) $INST_DIR/./arch-install
+		;;
+		3) $INST_DIR/./third
+		;;
+		4) $INST_DIR/./deinst
+		;;
+		5) set-restore
+		;;
+		[Qq]*) exit
+		;;
+		*) error
+		;;
+	esac
+
+$DIR/sub/./inst

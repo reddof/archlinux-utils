@@ -1,0 +1,230 @@
+#!/bin/bash
+
+DIR=$(pwd)
+PAC_DIR="$(pwd)/sub/pac-man.d"
+
+clear
+
+error () { clear
+
+read -p "
+
+Input yang anda masukkan salah !
+
+" input
+	case $input in
+		*) return
+		;;
+	esac
+}
+
+# List Files
+set-listfiles () { clear
+
+read -p "
+
+Masukkan nama package untuk mengetahui
+files apa saja yang yang dimiliki
+package tersebut.
+Masukkan nama package :
+
+" pf
+pacman -Ql $pf
+
+read -p "
+
+s. Cari Package lain :
+
+q. Kembali ke menu sebelumnya :
+
+Pilihan anda :
+
+" exit
+
+	case $exit in
+		[Ss]*) set-listfiles
+		;;
+		[Qq]*) return
+		;;
+		*) error
+		;;
+	esac
+}
+
+# Install package
+set-install () { clear
+
+	read -p "
+
+Masukkan nama Package yang ingin diinstall :
+
+" package
+
+sudo pacman -Sy $package --asdep --noconfirm --overwrite "*"
+
+read -p "
+
+s. Install Package Lain :
+
+q. Kembali ke menu sebelumnya :
+
+Pilihan anda :
+
+" exit
+
+	case $exit in
+		[Qq]*) return
+		;;
+		[Ss]*) set-install
+		;;
+		*) error
+		;;
+	esac
+}
+
+# Search dan Info package
+set-packinfo () { clear
+
+
+read -p "
+
+Masukkan nama Package yang anda cari :
+
+" package
+
+echo "
+Hasil Pencarian Terinstall:
+"
+pacman -Qsq $package
+echo "
+
+Hasil Pencarian di repo :
+
+"
+pacman -Ssq $package
+echo "
+
+Package Terinstall :
+
+"
+pacman -Qi $package
+echo "
+
+Package di repo :
+
+"
+pacman -Si $package
+
+read -p "
+
+s. Cari lagi
+
+q. Kembali ke menu sebelumnya
+
+Pilihan anda :
+
+" exit
+
+	case $exit in
+		[Qq]*) return
+		;;
+		[Ss]*) set-packinfo
+		;;
+		*) error
+		;;
+	esac
+}
+
+# Update semua packages
+set-updater () { clear
+
+read -p "
+
+Apakah ingin update semua packages ? [Y/n]
+
+" yn
+
+	case $yn in
+		[Yy]*) sudo pacman -Syyu --asdeps --noconfirm --overwrite "*"
+		;;
+		[Nn]*) return
+		;;
+		*) error
+		;;
+	esac
+}
+
+# Setting pacman ke server local dengan reflector
+set-reflector () { clear
+
+read -p "
+
+Setting server repository dari negara kita.
+Masukkan Nama Negara misalnya Indonesia,
+Atau kode negara misalnya ID untuk Indonesia :
+
+" negara
+
+read -p "
+
+Apakah anda ingin set server ke negara $negara ? [Y/n] :
+
+" yn
+
+	case $yn in
+		[Y/y]*) sudo reflector -p http,https --country $negara --latest 10 --fastest 5 --save /etc/pacman.d/mirrorlist
+		echo "
+
+Mohon tunggu sedang merubah server repository...
+"
+		sudo pacman -Sy archlinux-keyring --noconfirm --overwrite "*"
+		;;
+		[N/n]*) return
+		;;
+		*) error
+		;;
+	esac
+}
+
+echo "
+################################################################################
+##                   ARCH LINUX UTILITIES script by Reddof                    ##
+################################################################################
+##                             INSTALL PACKAGES                               ##
+##                                                                            ##
+##  1. Setting Reflector                                                      ##
+##  2. Update Packages                                                        ##
+##  3. Cari dan Info Package                                                  ##
+##  4. Install Package                                                        ##
+##  5. Daftar Files dari Package                                              ##
+##  6. Package Software Harian                                                ##
+##  q. Kembali ke Menu Sebelumnya                                             ##
+##                                                                            ##
+################################################################################
+"
+
+read -p "
+
+Silakan masukkan pilihan anda :
+
+" pa
+	case $pa in
+		1) set-reflector
+		;;
+		2) set-updater
+		;;
+		3) set-packinfo
+		;;
+		4) set-install
+		;;
+		5) set-listfiles
+		;;
+		6) $PAC_DIR/./daily
+		;;
+		[Qq]*) exit
+		;;
+		*) error
+		;;
+	esac
+
+$DIR/sub/./pac-man

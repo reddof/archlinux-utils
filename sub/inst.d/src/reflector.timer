@@ -1,0 +1,11 @@
+[Unit]
+Description=Refresh Pacman mirrorlist daily with Reflector.
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+AccuracySec=1us
+RandomizedDelaySec=1h
+
+[Install]
+WantedBy=timers.target
