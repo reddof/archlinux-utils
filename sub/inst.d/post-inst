@@ -22,7 +22,7 @@ set-grub () { clear
 
 	read -p "
 
-Lanjut Install dan konfigurasi GRUB ?[Y/n] :
+Lanjut Install dan konfigurasi GRUB ? [Y/n] :
 
 " yn
 

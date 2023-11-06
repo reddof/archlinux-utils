@@ -70,12 +70,14 @@ Apakah anda ingin mengaktifkan NetworkManager, Reflector, Cups, dan ntp ? [Y/n] 
 " yn
 
 		case $yn in
-			[Y/y]*) systemctl enable ntpd.service
-			systemctl start ntpd.service
-			timedatectl set-ntp 1
-			systemctl enable NetworkManager
+			[Y/y]*) systemctl enable NetworkManager
 			systemctl start NetworkManager
 			nmtui
+			systemctl enable ntpd.service
+			systemctl start ntpd.service
+			timedatectl set-ntp 1
+			systemctl enable cups.service
+			systemctl start cups.service
 			echo "
 
 Mohon tunggu sedang mengaktifkan services...
@@ -87,8 +89,7 @@ Mohon tunggu sedang mengaktifkan services...
 			cp $DIR/sub/inst.d/src/reflector.conf /etc/xdg/reflector
 			systemctl enable reflector.service
 			systemctl start reflector.service
-			systemctl enable cups.service
-			systemctl start cups.service
+
 			echo "
 
 Services sudah berhasil diaktifkan.
