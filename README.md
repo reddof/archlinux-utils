@@ -32,6 +32,9 @@ cd /archlinux-utils
 sudo ./start.sh
 ```
 
-credit .oh-my-zsh : https://ohmyz.sh/
+Dalam repository ini ada folder dan files yang bukan milik saya, saya melampirkan folder dan files tersebut hanya untuk keperluan backup dan restore settings dan files saya. 
+
+
+credit .oh-my-zsh : https://ohmyz.sh/ semua hak dan kepemilikan adalah atas nama https://ohmyz.sh/
 
 Tekan titik dua dan q (:q) untuk keluar vim.
