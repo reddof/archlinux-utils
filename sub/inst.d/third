@@ -40,7 +40,6 @@ Apakah anda ingin Install ZSH dan OH MY ZSH ? [Y/n] :
 		*) error
 		;;
 	esac
-
 }
 
 # Install yay
