@@ -54,7 +54,7 @@ Lanjut install $kernel dan Package pendukung [Y/n] :
 " yn
 
 		case $yn in
-			[Yy]*) pacstrap /mnt base base-devel $kernel linux-firmware intel-ucode reflector plymouth os-prober cups cups-pdf networkmanager vim ntfs-3g man-db zsh ntp --overwrite "*"
+			[Yy]*) pacstrap /mnt base base-devel $kernel linux-firmware intel-ucode reflector plymouth os-prober cups cups-pdf networkmanager vim ntfs-3g man-db ntp --overwrite "*"
 			;;
 			[Qq]*) return
 			;;
