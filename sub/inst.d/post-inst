@@ -44,11 +44,8 @@ Masukkan bootloader id anda, misalnya Arch Linux :
 
 " bootloaderid
 
-<<<<<<< HEAD
 			grub-install --efi-directory=$efi --bootloader-id="$bootloaderid"
-=======
-			grub-install --efi-directory=$efi --bootloader-id='$bootloaderid'
->>>>>>> 6632bbd004deff51d48a6caabe95c86b88b189ff
+
 			grub-mkconfig -o /boot/grub/grub.cfg
 			;;
 			[Nn]*) return
