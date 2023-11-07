@@ -44,10 +44,11 @@ Silakan masukkan pilihan anda :
 		cp $DIR/sub/inst.d/src/lightdm.conf /etc/lightdm/lightdm.conf
 		systemctl enable lightdm.service
 		;;
-		2) sudo pacman -Sy xorg-server pulseaudio plasma-meta kde-system kde-utilities kde-system --noconfirm --overwrite "*"
+		2) sudo sudo pacman -S - < $DIR/sub/inst.d/src/list-kde.txt --noconfirm --overwrite "*"
+		pacman -Sy xorg-server pulseaudio --noconfirm --overwrite "*"
 		systemctl enable sddm.service
 		;;
-		3) sudo pacman -S - < $DIR/sub/inst.d/src/xfce-list.txt --noconfirm --overwrite "*"
+		3) sudo pacman -S - < $DIR/sub/inst.d/src/list-xfce.txt --noconfirm --overwrite "*"
 		pacman -S xorg-server pulseaudio lightdm lightdm-gtk-greeter
 		rm -rf /etc/lightdm/lightdm.conf
 		cp $DIR/sub/inst.d/src/lightdm.conf /etc/lightdm/lightdm.conf
