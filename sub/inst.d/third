@@ -66,7 +66,7 @@ Apakah chaotic-aur sudah diaktifkan ? [Y/n] :
 	case $yn in
 		[Yy]*) pacman -Sy yay --noconfirm --overwrite "*"
 		;;
-		[Nn]*) return
+		[Nn]*) set-chaotic
 		;;
 		*) error
 		;;
