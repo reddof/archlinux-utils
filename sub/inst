@@ -49,7 +49,7 @@ set-reflector () { clear
 
 read -p "
 
-Setting server repository dari negara kita.
+Setting repository ke server lokal.
 Masukkan Nama negara misalnya Indonesia,
 Atau kode negara misalnya ID untuk Indonesia :
 
@@ -84,7 +84,7 @@ echo "
 ################################################################################
 ##                                 INSTALL                                    ##
 ##                                                                            ##
-##  1. Setting reflector ke server Indonesia                                  ##
+##  1. Setting reflector ke server Lokal                                  ##
 ##  2. Arch Install                                                           ##
 ##  3. Install Third Parties Packages                                         ##
 ##  4. Install Desktop Environment                                            ##
