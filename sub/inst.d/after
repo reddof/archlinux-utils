@@ -36,7 +36,7 @@ Apakah anda ingin menjadikan $nama menjadi user baru ? [Y/n] :
 			[Y/y]*) useradd -m $nama -G wheel
 			chown -R $nama /home/$nama
 			passwd $nama
-			vim /etc/passwd
+			chsh
 			read -p "
 
 Apakah anda ingin menjadikan $nama menjadi sudoer? [Y/n] :
