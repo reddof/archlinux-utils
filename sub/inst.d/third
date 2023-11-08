@@ -25,26 +25,14 @@ read -p "
 Apakah anda ingin Install ZSH dan OH MY ZSH ? [Y/n] :
 
 " yn
-
-read -p "
-
-Masukkan username anda :
-
-" name
-
 	case $yn in
 		[Yy]*) sudo pacman -Sy zsh curl --asdeps --noconfirm --overwrite "*"
 		sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-		sudo cp -R .oh-my-zsh ~/
-mv .oh-my-zsh /home/$nama
+		cp -R .oh-my-zsh ~/
 		cp -R $DIR/sub/inst.d/src/.zsh* ~/
-cp -R $DIR/sub/inst.d/src/.zsh* /home/$nama
 		git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-cp - R ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions /home/$nama/.oh-my-zsh/custom/plugins
 		git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-cp -R ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting /home/$nama/.oh-my-zsh/custom/plugins
-		sudo chsh
-chsh
+		chsh
 		;;
 		[Nn]*) return
 		;;
