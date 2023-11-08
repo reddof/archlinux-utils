@@ -152,8 +152,7 @@ Apakah anda ingin mengatur zona waktu ke $region/$kota ? [Y/n] :
 
 # Setting password root
 set-password () { clear
-	cp -R $DIR/sub/inst.d/src/.zsh* /root
-	cp -R $DIR/sub/.oh* /root
+
 	read -p "
 
 Apakah ingin set password root anda ? [Y] :
