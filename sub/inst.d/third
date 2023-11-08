@@ -28,7 +28,7 @@ Apakah anda ingin Install ZSH dan OH MY ZSH ? [Y/n] :
 	case $yn in
 		[Yy]*) sudo pacman -Sy zsh curl --asdeps --noconfirm --overwrite "*"
 		sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-		cp -R .oh-my-zsh ~/
+		mv .oh-my-zsh ~/
 		cp -R $DIR/sub/inst.d/src/.zsh* ~/
 		git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 		git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
