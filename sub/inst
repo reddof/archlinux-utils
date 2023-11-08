@@ -104,9 +104,9 @@ Silakan masukkan pilihan anda :
 		;;
 		2) $INST_DIR/./arch-install
 		;;
-		3) $INST_DIR/./third
+		3) $INST_DIR/./third-inst
 		;;
-		4) $INST_DIR/./deinst
+		4) $INST_DIR/./de-inst
 		;;
 		5) set-restore
 		;;

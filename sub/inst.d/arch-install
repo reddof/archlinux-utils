@@ -37,7 +37,7 @@ echo "
 read -p "
 Silakan masukkan pilihan anda : " util
 	case $util in
-		1) $INST_DIR/./base-install
+		1) $INST_DIR/./base-inst
 		;;
 		2) $INST_DIR/./post-inst
 		;;
