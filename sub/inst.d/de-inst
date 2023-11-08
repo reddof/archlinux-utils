@@ -1,0 +1,66 @@
+#!/bin/bash
+
+DIR=$(pwd)
+
+clear
+
+error () { clear
+
+read -p "
+
+Input yang anda masukkan salah !
+
+" input
+	case $input in
+		*) return
+		;;
+	esac
+}
+
+echo "
+################################################################################
+##                   ARCH LINUX UTILITIES script by Reddof                    ##
+################################################################################
+##                        INSTALL DESKTOP ENVIRONMENT                         ##
+##                                                                            ##
+##  1. Cinnamon                                                               ##
+##  2. KDE                                                                    ##
+##  3. XFCE                                                                   ##
+##  4. Gnome                                                                  ##
+##  q. Kembali ke menu sebelumnya                                             ##
+##                                                                            ##
+##                                                                            ##
+################################################################################
+"
+
+read -p "
+
+Silakan masukkan pilihan anda :
+
+" de
+	case $de in
+		1) sudo pacman -Syu xorg-server pulseaudio cinnamon gnome-terminal lightdm lightdm-gtk-greeter --noconfirm --overwrite "*"
+		rm -rf /etc/lightdm/lightdm.conf
+		cp $DIR/sub/inst.d/src/lightdm.conf /etc/lightdm/lightdm.conf
+		systemctl enable lightdm.service
+		;;
+		2) sudo sudo pacman -S - < $DIR/sub/inst.d/src/list-kde.txt --noconfirm --overwrite "*"
+		pacman -Sy xorg-server pulseaudio --noconfirm --overwrite "*"
+		systemctl enable sddm.service
+		;;
+		3) sudo pacman -S - < $DIR/sub/inst.d/src/list-xfce.txt --noconfirm --overwrite "*"
+		pacman -S xorg-server pulseaudio lightdm lightdm-gtk-greeter
+		rm -rf /etc/lightdm/lightdm.conf
+		cp $DIR/sub/inst.d/src/lightdm.conf /etc/lightdm/lightdm.conf
+		systemctl enable lightdm.service
+		;;
+		4) sudo pacman -S xorg-server pulseaudio gnome --noconfirm --overwrite "*"
+		systemctl enable gdm.service
+		;;
+		[Qq]*) exit
+		;;
+		*) error
+		;;
+	esac
+
+$DIR/sub/inst.d/./de-inst
