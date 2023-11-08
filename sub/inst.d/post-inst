@@ -42,9 +42,9 @@ Masukkan mount point partisi efi anda, misalnya /boot/efi :
 
 Masukkan bootloader id anda, misalnya Arch Linux :
 
-" bootloaderid
+" btldrid
 
-			grub-install --efi-directory=$efi --bootloader-id="$bootloaderid"
+			grub-install --efi-directory=$efi --bootloader-id="$btldrid"
 
 			grub-mkconfig -o /boot/grub/grub.cfg
 			;;
