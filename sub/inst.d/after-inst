@@ -2,6 +2,10 @@
 
 DIR=$(pwd)
 
+systemctl enable ntpd.service
+systemctl start ntpd.service
+timedatectl set-ntp 1
+
 clear
 
 error () { clear
@@ -63,7 +67,7 @@ set-services () { clear
 
 	read -p "
 
-Apakah anda ingin mengaktifkan NetworkManager, Reflector, Cups, dan ntp ? [Y/n] :
+Apakah anda ingin mengaktifkan NetworkManager, Reflector, dan Cups ? [Y/n] :
 
 " yn
 
@@ -71,9 +75,6 @@ Apakah anda ingin mengaktifkan NetworkManager, Reflector, Cups, dan ntp ? [Y/n] 
 			[Y/y]*) systemctl enable NetworkManager
 			systemctl start NetworkManager
 			nmtui
-			systemctl enable ntpd.service
-			systemctl start ntpd.service
-			timedatectl set-ntp 1
 			systemctl enable cups.service
 			systemctl start cups.service
 			echo "

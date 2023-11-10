@@ -30,7 +30,7 @@ Ini adalah restore file pribadi saya ,lakukan ini  ? [Y/n] :
 	case $yn in
 		[Y/y]*) echo "
 
-Mohon tunggu proses backup sedang berlangsung ...
+Mohon tunggu proses restore sedang berlangsung ...
 
 "
 		cp -R /home/Storage/Data/fonts/fonts /usr/share
