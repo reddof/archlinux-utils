@@ -41,7 +41,7 @@ Silakan masukkan pilihan anda : " util
 		;;
 		2) $INST_DIR/./post-inst
 		;;
-		3) $INST_DIR/./after
+		3) $INST_DIR/./after-inst
 		;;
 		[Qq]*) exit
 		;;
