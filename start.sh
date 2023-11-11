@@ -6,7 +6,7 @@ LS=$(ls -a /mnt | grep archlinux-utils)
 
 if [ "$LS" = "archlinux-utils" ];
 	then
-		echo "next"
+		echo " "
 	else
 		sudo chmod +x -R $DIR/*
 		sudo mkdir -p /mnt/archlinux-utils
