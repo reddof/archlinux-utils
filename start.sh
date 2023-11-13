@@ -2,11 +2,11 @@
 
 DIR=$(pwd)
 SUB_DIR="$(pwd)/sub"
-LS=$(ls -a /mnt | grep archlinux-utils)
+FN_DIR=$(ls -a /mnt | grep archlinux-utils)
 
-if [ "$LS" = "archlinux-utils" ];
+if [ "$FN_DIR" = "archlinux-utils" ];
 	then
-		echo "next"
+		sudo chmod +x /mnt/archlinux-utils
 	else
 		sudo chmod +x -R $DIR/*
 		sudo mkdir -p /mnt/archlinux-utils

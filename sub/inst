@@ -34,8 +34,8 @@ Mohon tunggu proses restore sedang berlangsung ...
 
 "
 		cp -R /home/Storage/Data/fonts/fonts /usr/share
-		fc-cache -fv
 		cp -R /home/Storage/Data/wallpapers/archlinux /usr/share/backgrounds
+		fc-cache -fv
 		;;
 		[N/n]*) return
 		;;
@@ -68,6 +68,15 @@ Apakah anda ingin set server ke negara $negara ? [Y/n] :
 Mohon tunggu sedang merubah server repository...
 "
 			sudo pacman -Sy archlinux-keyring --noconfirm --overwrite "*"
+			read -p "
+
+Berhasil merubah ke server lokal ...
+
+" ret
+			case $ret in
+				*) return
+				;;
+			esac
 		;;
 		[N/n]*) return
 		;;

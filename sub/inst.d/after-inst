@@ -40,7 +40,6 @@ Apakah anda ingin menjadikan $nama menjadi user baru ? [Y/n] :
 			[Y/y]*) useradd -m $nama -G wheel
 			chown -R $nama /home/$nama
 			passwd $nama
-			chsh
 			read -p "
 
 Apakah anda ingin menjadikan $nama menjadi sudoer? [Y/n] :
@@ -48,6 +47,15 @@ Apakah anda ingin menjadikan $nama menjadi sudoer? [Y/n] :
 " sudo
 				case $sudo in
 					[Yy]*) vim /etc/sudoers
+					read -p "
+
+Seeting User baru berhasil ...
+
+" ret
+			case $ret in
+				*) return
+				;;
+			esac
 					;;
 					[Nn]*) return
 					;;
@@ -88,13 +96,16 @@ Mohon tunggu sedang mengaktifkan services...
 			cp $DIR/sub/inst.d/src/reflector.conf /etc/xdg/reflector
 			systemctl enable reflector.service
 			systemctl start reflector.service
+			pacman -Syyu --noconfirm --overwrite "*"
+			read -p "
 
-			echo "
+Semua services berhasil diaktifkan ...
 
-Services sudah berhasil diaktifkan.
-
-"
-			pacman -Syyu --noconfirm
+" ret
+			case $ret in
+				*) return
+				;;
+			esac
 			;;
 			[N/n]*) return
 			;;

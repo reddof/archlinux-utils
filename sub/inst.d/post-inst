@@ -47,6 +47,15 @@ Masukkan bootloader id anda, misalnya Arch Linux :
 			grub-install --efi-directory=$efi --bootloader-id="$btldrid"
 
 			grub-mkconfig -o /boot/grub/grub.cfg
+			read -p "
+
+Install dan konfigurasi GRUB berhasil ...
+
+" ret
+			case $ret in
+				*) return
+				;;
+			esac
 			;;
 			[Nn]*) return
 			;;
@@ -81,6 +90,15 @@ Apakah anda ingin Set bahasa anda ke $bahasa1.UTF-8 UTF-8 dan $bahasa2.UTF-8 UTF
 			echo "$bahasa2.UTF-8 UTF-8" >> /etc/locale.gen
 			locale-gen
 			echo "LANG=$bahasa1.UTF-8" > /etc/locale.conf
+			read -p "
+
+Setting bahasa berhasil ...
+
+" ret
+			case $ret in
+				*) return
+				;;
+			esac
 			;;
 			[N/n]*) return
 			;;
@@ -106,6 +124,15 @@ Apakah anda ingin $hostname menjadi hostname anda ? [Y/n] :
 
 		case $yn in
 			[Y/y]*) echo "$hostname" > /etc/hostname
+			read -p "
+
+Setting hostname berhasil ...
+
+" ret
+			case $ret in
+				*) return
+				;;
+			esac
 			;;
 			[N/n]*) return
 			;;
@@ -142,6 +169,15 @@ Apakah anda ingin mengatur zona waktu ke $region/$kota ? [Y/n] :
 		case $yn in
 			[Y/y]*) ln -sf /usr/share/zoneinfo/$region/$kota /etc/localtime
 			hwclock -w -l
+			read -p "
+
+Settting timezone berhasil ...
+
+" ret
+			case $ret in
+				*) return
+				;;
+			esac
 			;;
 			[N/n]*) return
 			;;
@@ -161,6 +197,15 @@ Apakah ingin set password root anda ? [Y] :
 
 		case $yn in
 			[Y/y]*) passwd
+			read -p "
+
+Pasword berhasil dibuat ...
+
+" ret
+			case $ret in
+				*) return
+				;;
+			esac
 			;;
 			*) error
 			;;

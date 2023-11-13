@@ -29,6 +29,15 @@ lanjut membuat file Fstab ? [Y/n] :
 		case $yn in
 			[Y/y]*) genfstab -U /mnt > /mnt/etc/fstab
 			cat /mnt/etc/fstab
+			read -p "
+
+File fstab sudah berhasil dibuat ...
+
+" ret
+			case $ret in
+				*) return
+				;;
+			esac
 			;;
 			[N/n]*) return
 			;;
@@ -55,6 +64,15 @@ Lanjut install $kernel dan Package pendukung [Y/n] :
 
 		case $yn in
 			[Yy]*) pacstrap /mnt base base-devel $kernel linux-firmware intel-ucode reflector plymouth os-prober cups cups-pdf networkmanager vim ntfs-3g man-db ntp --overwrite "*"
+			read -p "
+
+Kernel dan packages pendukung sudah berhasil dibuat ...
+
+" ret
+			case $ret in
+				*) return
+				;;
+			esac
 			;;
 			[Qq]*) return
 			;;
