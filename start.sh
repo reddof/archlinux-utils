@@ -6,7 +6,11 @@ FN_DIR=$(ls -a /mnt | grep archlinux-utils)
 
 if [ "$FN_DIR" = "archlinux-utils" ];
 	then
+<<<<<<< HEAD
 		sudo chmod +x /mnt/archlinux-utils
+=======
+		echo " "
+>>>>>>> 4088ef82886771eb07edc5879448d4498a687a0e
 	else
 		sudo chmod +x -R $DIR/*
 		sudo mkdir -p /mnt/archlinux-utils
