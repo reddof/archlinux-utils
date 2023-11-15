@@ -28,16 +28,29 @@ lanjut membuat file Fstab ? [Y/n] :
 
 		case $yn in
 			[Y/y]*) genfstab -U /mnt > /mnt/etc/fstab
-			cat /mnt/etc/fstab
-			read -p "
+			FN_FSTAB=$(ls -a /mnt/etc | grep fstab)
+			if [ "$FN_FSTAB" = "fstab" ] ;
+				then
+					cat /mnt/etc/fstab
+					read -p "
 
 File fstab sudah berhasil dibuat ...
 
 " ret
-			case $ret in
-				*) return
-				;;
-			esac
+					case $ret in
+						*) return
+						;;
+					esac
+				else
+					read -p "
+File fstab gagal dibuat, silakan buat secara manual
+
+" ret
+					case $ret in
+						*) return
+						;;
+					esac
+			fi
 			;;
 			[N/n]*) return
 			;;
