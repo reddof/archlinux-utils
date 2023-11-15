@@ -41,7 +41,7 @@ Mohon tunggu proses restore sedang berlangsung ...
 		;;
 		*) error
 		;;
-esac
+	esac
 }
 
 # Setting pacman ke server lokal dengan reflector
