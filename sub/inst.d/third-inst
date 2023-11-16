@@ -51,16 +51,15 @@ Apakah anda ingin Install ZSH dan OH MY ZSH ? [Y/n] :
 			then
 				sudo cp -r $SUB_DIR/zsh-syntax-highlighting /root/.oh-my-zsh/custom/plugins
 				sudo cp -r $SUB_DIR/zsh-autosuggestions /root/.oh-my-zsh/custom/plugins
-				sudo rm -rf $SUB_DIR/zsh-autosuggestions
-				sudo rm -rf $SUB_DIR/zsh-syntax-highlighting
 			else
 				cp -r $SUB_DIR/zsh-syntax-highlighting /home/$USER/.oh-my-zsh/custom/plugins
 				cp -r $SUB_DIR/zsh-autosuggestions /home/$USER/.oh-my-zsh/custom/plugins
 				sudo cp -r $SUB_DIR/zsh-syntax-highlighting /root/.oh-my-zsh/custom/plugins
 				sudo cp -r $SUB_DIR/zsh-autosuggestions /root/.oh-my-zsh/custom/plugins
-				sudo rm -rf $SUB_DIR/zsh-autosuggestions
-				sudo rm -rf $SUB_DIR/zsh-syntax-highlighting
 		fi
+
+		sudo rm -rf $SUB_DIR/zsh-autosuggestions
+		sudo rm -rf $SUB_DIR/zsh-syntax-highlighting
 		cp $SUB_DIR/inst.d/src/.zsh* ~/
 		sudo cp $SUB_DIR/inst.d/src/.zsh* /root
 		chsh $USER
