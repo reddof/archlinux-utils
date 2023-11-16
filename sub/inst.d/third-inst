@@ -62,6 +62,7 @@ Apakah anda ingin Install ZSH dan OH MY ZSH ? [Y/n] :
 		sudo rm -rf $SUB_DIR/zsh-syntax-highlighting
 		cp $SUB_DIR/inst.d/src/.zsh* ~/
 		sudo cp $SUB_DIR/inst.d/src/.zsh* /root
+
 		chsh $USER
 		sudo chsh
 
