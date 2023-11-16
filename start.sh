@@ -7,7 +7,11 @@ MY_CHROOT=/mnt
 FN_DIR=$(ls -a $MY_CHROOT | grep archlinux-utils)
 if [ "$FN_DIR" = "archlinux-utils" ];
 	then
-		sudo chmod +x $MY_CHROOT/archlinux-utils
+		sudo mv $MY_CHROOT/arch* $MY_CHROOT/archlinux-utils.bak
+		sudo chmod +x -R $DIR/*
+		sudo mkdir -p $MY_CHROOT/archlinux-utils
+		sudo cp -R $DIR/* $MY_CHROOT/archlinux-utils
+		sudo cp -R $DIR/.* $MY_CHROOT/archlinux-utils
 	else
 		sudo chmod +x -R $DIR/*
 		sudo mkdir -p $MY_CHROOT/archlinux-utils
@@ -60,7 +64,8 @@ Silakan masukkan pilihan anda :
 		;;
 		4) vim $DIR/README.md
 		;;
-		[Qq]*) clear
+		[Qq]*) sudo rm -rf $MY_CHROOT/archlinux-utils.bak
+		clear
 		exit
 		;;
 		*) error
