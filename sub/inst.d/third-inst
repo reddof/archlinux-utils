@@ -64,6 +64,7 @@ Apakah anda ingin Install ZSH dan OH MY ZSH ? [Y/n] :
 		sudo cp $SUB_DIR/inst.d/src/.zsh* /root
 		chsh $USER
 		sudo chsh
+
 		read -p "
 
 Berhasil install dan konfigurasi ZSH ...
