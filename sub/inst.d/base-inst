@@ -28,7 +28,7 @@ lanjut membuat file Fstab ? [Y/n] :
 
 		case $yn in
 			[Y/y]*) genfstab -U $DIR/fstab
-			sudo mv $DIR/fstab /mnt/etc/fstab
+			sudo mv $DIR/fstab /mnt/etc
 			FN_FSTAB=$(ls -a /mnt/etc | grep fstab)
 			if [ "$FN_FSTAB" = "fstab" ] ;
 				then
