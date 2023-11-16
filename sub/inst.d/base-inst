@@ -27,7 +27,8 @@ lanjut membuat file Fstab ? [Y/n] :
 " yn
 
 		case $yn in
-			[Y/y]*) genfstab -U /mnt > /mnt/etc/fstab
+			[Y/y]*) genfstab -U $DIR/fstab
+			sudo mv $DIR/fstab /mnt/etc/fstab
 			FN_FSTAB=$(ls -a /mnt/etc | grep fstab)
 			if [ "$FN_FSTAB" = "fstab" ] ;
 				then
@@ -76,7 +77,7 @@ Lanjut install $kernel dan Package pendukung [Y/n] :
 " yn
 
 		case $yn in
-			[Yy]*) pacstrap /mnt base base-devel $kernel linux-firmware intel-ucode reflector plymouth os-prober cups cups-pdf networkmanager vim ntfs-3g man-db ntp --overwrite "*"
+			[Yy]*) sudo pacstrap /mnt base base-devel $kernel linux-firmware intel-ucode reflector plymouth os-prober cups cups-pdf networkmanager vim ntfs-3g man-db ntp --overwrite "*"
 			read -p "
 
 Kernel dan packages pendukung sudah berhasil dibuat ...
