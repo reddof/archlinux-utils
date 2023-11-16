@@ -2,16 +2,17 @@
 
 DIR=$(pwd)
 SUB_DIR="$(pwd)/sub"
-FN_DIR=$(ls -a /mnt | grep archlinux-utils)
+MY_CHROOT=/mnt
 
+FN_DIR=$(ls -a $MY_CHROOT | grep archlinux-utils)
 if [ "$FN_DIR" = "archlinux-utils" ];
 	then
-		sudo chmod +x /mnt/archlinux-utils
+		sudo chmod +x $MY_CHROOT/archlinux-utils
 	else
 		sudo chmod +x -R $DIR/*
-		sudo mkdir -p /mnt/archlinux-utils
-		sudo cp -Rn $DIR/* /mnt/archlinux-utils
-		sudo cp -Rn $DIR/.* /mnt/archlinux-utils
+		sudo mkdir -p $MY_CHROOT/archlinux-utils
+		sudo cp -R $DIR/* $MY_CHROOT/archlinux-utils
+		sudo cp -R $DIR/.* $MY_CHROOT/archlinux-utils
 fi
 
 clear

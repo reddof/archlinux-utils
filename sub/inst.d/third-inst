@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DIR=$(pwd)
+SUB_DIR=$DIR/sub
 
 clear
 
@@ -26,13 +27,44 @@ Apakah anda ingin Install ZSH dan OH MY ZSH ? [Y/n] :
 
 " yn
 	case $yn in
-		[Yy]*) sudo pacman -Sy zsh curl --asdeps --noconfirm --overwrite "*"
+		[Yy]*) sudo pacman -Sy zsh curl git --asdeps --noconfirm --overwrite "*"
+
 		sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-		mv .oh-my-zsh ~/
-		cp $DIR/sub/inst.d/src/.zsh* ~/
-		git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-		git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-		chsh
+
+		USER=$(whoami)
+		FN_OMZ=$(ls -a /home/$USER | grep .oh*)
+
+		if [ "FN_OMZ" = ".oh-my-zsh" ] ;
+			then
+				sudo cp -r ~/.oh* /root
+			else
+				sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+				sudo cp -r ~/.oh* /root
+		fi
+
+		git clone https://github.com/zsh-users/zsh-autosuggestions.git $SUB_DIR/zsh-autosuggestions
+		git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $SUB_DIR/zsh-syntax-highlighting
+
+		FN_ZSH_AUTO=$(ls -a /home/$USER/.oh-my-zsh/custom/plugins | grep zsh-autosuggestions)
+
+		if [ "FN_ZSH_AUTO" = "zsh-autosuggestions" ] ;
+			then
+				sudo cp -r $SUB_DIR/zsh-syntax-highlighting /root/.oh-my-zsh/custom/plugins
+				sudo cp -r $SUB_DIR/zsh-autosuggestions /root/.oh-my-zsh/custom/plugins
+				sudo rm -rf $SUB_DIR/zsh-autosuggestions
+				sudo rm -rf $SUB_DIR/zsh-syntax-highlighting
+			else
+				cp -r $SUB_DIR/zsh-syntax-highlighting /home/$USER/.oh-my-zsh/custom/plugins
+				cp -r $SUB_DIR/zsh-autosuggestions /home/$USER/.oh-my-zsh/custom/plugins
+				sudo cp -r $SUB_DIR/zsh-syntax-highlighting /root/.oh-my-zsh/custom/plugins
+				sudo cp -r $SUB_DIR/zsh-autosuggestions /root/.oh-my-zsh/custom/plugins
+				sudo rm -rf $SUB_DIR/zsh-autosuggestions
+				sudo rm -rf $SUB_DIR/zsh-syntax-highlighting
+		fi
+		cp $SUB_DIR/inst.d/src/.zsh* ~/
+		sudo cp $SUB_DIR/inst.d/src/.zsh* /root
+		chsh $USER
+		sudo chsh
 		read -p "
 
 Berhasil install dan konfigurasi ZSH ...
