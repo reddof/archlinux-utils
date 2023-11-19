@@ -5,6 +5,7 @@ SUB_DIR="$(pwd)/sub"
 MY_CHROOT=/mnt
 
 FN_DIR=$(ls -a $MY_CHROOT | grep archlinux-utils)
+
 if [ "$FN_DIR" = "archlinux-utils" ];
 	then
 		sudo chmod +x $MY_CHROOT/archlinux-utils

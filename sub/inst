@@ -33,8 +33,8 @@ Ini adalah restore file pribadi saya ,lakukan ini  ? [Y/n] :
 Mohon tunggu proses restore sedang berlangsung ...
 
 "
-		cp -R /home/Storage/Data/fonts/fonts /usr/share
-		cp -R /home/Storage/Data/wallpapers/archlinux /usr/share/backgrounds
+		cp -R /media/Storage/Data/fonts/fonts /usr/share
+		cp -R /media/Storage/Data/wallpapers/archlinux /usr/share/backgrounds
 		fc-cache -fv
 		;;
 		[N/n]*) return

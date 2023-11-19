@@ -78,7 +78,7 @@ Lanjut install $kernel dan Package pendukung [Y/n] :
 " yn
 
 		case $yn in
-			[Yy]*) sudo pacstrap $MY_CHROOT base base-devel $kernel linux-firmware intel-ucode reflector plymouth os-prober cups cups-pdf networkmanager vim ntfs-3g man-db ntp --overwrite "*"
+			[Yy]*) sudo pacstrap $MY_CHROOT base base-devel $kernel linux-firmware intel-ucode reflector plymouth os-prober cups cups-pdf networkmanager vim ntfs-3g man-db ntp openssh --overwrite "*"
 			read -p "
 
 Kernel dan packages pendukung sudah berhasil dibuat ...
