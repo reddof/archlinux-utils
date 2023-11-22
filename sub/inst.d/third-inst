@@ -32,9 +32,8 @@ Apakah anda ingin Install ZSH dan OH MY ZSH ? [Y/n] :
 		sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 		USER=$(whoami)
-		FN_OMZ=$(ls -a /home/$USER | grep .oh*)
 
-		if [ "FN_OMZ" = ".oh-my-zsh" ] ;
+		if [ "$(ls -a /home/$USER | grep .oh*)" = ".oh-my-zsh" ] ;
 			then
 				sudo cp -r ~/.oh* /root
 			else
@@ -45,9 +44,7 @@ Apakah anda ingin Install ZSH dan OH MY ZSH ? [Y/n] :
 		git clone https://github.com/zsh-users/zsh-autosuggestions.git $SUB_DIR/zsh-autosuggestions
 		git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $SUB_DIR/zsh-syntax-highlighting
 
-		FN_ZSH_AUTO=$(ls -a /home/$USER/.oh-my-zsh/custom/plugins | grep zsh-autosuggestions)
-
-		if [ "FN_ZSH_AUTO" = "zsh-autosuggestions" ] ;
+		if [ "$(ls -a /home/$USER/.oh-my-zsh/custom/plugins | grep zsh-autosuggestions)" = "zsh-autosuggestions" ] ;
 			then
 				sudo cp -r $SUB_DIR/zsh-syntax-highlighting /root/.oh-my-zsh/custom/plugins
 				sudo cp -r $SUB_DIR/zsh-autosuggestions /root/.oh-my-zsh/custom/plugins
