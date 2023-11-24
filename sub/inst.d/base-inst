@@ -78,15 +78,28 @@ Lanjut install $kernel dan Package pendukung [Y/n] :
 
 		case $yn in
 			[Yy]*) sudo pacstrap $MY_CHROOT base base-devel $kernel linux-firmware intel-ucode reflector plymouth os-prober cups cups-pdf networkmanager vim ntfs-3g man-db ntp openssh --overwrite "*"
-			read -p "
+			if [ "$(ls -A $MY_CHROOT/usr/lib/modules)" = "" ] ;
+				then
+					read -p "
 
-Kernel dan packages pendukung sudah berhasil dibuat ...
+Kernel dan packages pendukung gagal diinstall ulangi lagi ...
 
 " ret
-			case $ret in
-				*) return
-				;;
-			esac
+						case $ret in
+							*) return
+							;;
+						esac
+				else
+					read -p "
+
+Kernel dan packages pendukung sudah berhasil diinstall ...
+
+" ret
+						case $ret in
+							*) return
+							;;
+						esac
+			fi
 			;;
 			[Qq]*) return
 			;;
