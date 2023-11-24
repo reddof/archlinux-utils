@@ -86,7 +86,7 @@ Apakah anda ingin Set bahasa anda ke $bahasa1.UTF-8 UTF-8 dan $bahasa2.UTF-8 UTF
 " yn
 
 		case $yn in
-			[Y/y]*) echo "$bahasa1.UTF-8 UTF-8" >> /etc/locale.gen
+			[Yy]*) echo "$bahasa1.UTF-8 UTF-8" >> /etc/locale.gen
 			echo "$bahasa2.UTF-8 UTF-8" >> /etc/locale.gen
 			locale-gen
 			echo "LANG=$bahasa1.UTF-8" > /etc/locale.conf
@@ -100,7 +100,7 @@ Setting bahasa berhasil ...
 				;;
 			esac
 			;;
-			[N/n]*) return
+			[Nn]*) return
 			;;
 			*) error
 			;;
@@ -123,7 +123,7 @@ Apakah anda ingin $hostname menjadi hostname anda ? [Y/n] :
 " yn
 
 		case $yn in
-			[Y/y]*) echo "$hostname" > /etc/hostname
+			[Yy]*) echo "$hostname" > /etc/hostname
 			read -p "
 
 Setting hostname berhasil ...
@@ -134,7 +134,7 @@ Setting hostname berhasil ...
 				;;
 			esac
 			;;
-			[N/n]*) return
+			[Nn]*) return
 			;;
 			*) error
 			;;
@@ -167,7 +167,7 @@ Apakah anda ingin mengatur zona waktu ke $region/$kota ? [Y/n] :
 " yn
 
 		case $yn in
-			[Y/y]*) ln -sf /usr/share/zoneinfo/$region/$kota /etc/localtime
+			[Yy]*) ln -sf /usr/share/zoneinfo/$region/$kota /etc/localtime
 			hwclock -w -l
 			read -p "
 
@@ -179,7 +179,7 @@ Settting timezone berhasil ...
 				;;
 			esac
 			;;
-			[N/n]*) return
+			[Nn]*) return
 			;;
 			*) error
 			;;
@@ -196,7 +196,7 @@ Apakah ingin set password root anda ? [Y] :
 " yn
 
 		case $yn in
-			[Y/y]*) passwd
+			[Yy]*) passwd
 			read -p "
 
 Pasword berhasil dibuat ...

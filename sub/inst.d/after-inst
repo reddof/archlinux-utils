@@ -37,7 +37,7 @@ Apakah anda ingin menjadikan $nama menjadi user baru ? [Y/n] :
 " yn
 
 		case $yn in
-			[Y/y]*) useradd -m $nama -G wheel
+			[Yy]*) useradd -m $nama -G wheel
 			chown -R $nama /home/$nama
 			passwd $nama
 			read -p "
@@ -49,7 +49,7 @@ Apakah anda ingin menjadikan $nama menjadi sudoer? [Y/n] :
 					[Yy]*) vim /etc/sudoers
 					read -p "
 
-Seeting User baru berhasil ...
+Setting User baru berhasil ...
 
 " ret
 			case $ret in
@@ -63,7 +63,7 @@ Seeting User baru berhasil ...
 					;;
 				esac
 			;;
-			[N/n]*) return
+			[Nn]*) return
 			;;
 			*) error
 			;;
@@ -80,7 +80,7 @@ Apakah anda ingin mengaktifkan NetworkManager, Reflector, dan Cups ? [Y/n] :
 " yn
 
 		case $yn in
-			[Y/y]*) systemctl enable NetworkManager
+			[Yy]*) systemctl enable NetworkManager
 			systemctl start NetworkManager
 			nmtui
 			systemctl enable cups.service
@@ -107,7 +107,7 @@ Semua services berhasil diaktifkan ...
 				;;
 			esac
 			;;
-			[N/n]*) return
+			[Nn]*) return
 			;;
 			*) error
 			;;

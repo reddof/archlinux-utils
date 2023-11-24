@@ -54,7 +54,7 @@ Apakah anda ingin membersihkan semua dependencies yang sudah tidak dipakai lagi 
 
 " ro
 		case $ro in
-			1) pacman -Qtdq | pacman -Rns -
+			[Yy]) pacman -Qtdq | pacman -Rns -
 			pacman -Qqd | pacman -Rsu -
 			;;
 			[Nn]*) return

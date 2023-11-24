@@ -172,14 +172,14 @@ Apakah anda ingin set server ke negara $negara ? [Y/n] :
 " yn
 
 	case $yn in
-		[Y/y]*) sudo reflector -p http,https --country $negara --latest 10 --fastest 5 --save /etc/pacman.d/mirrorlist
+		[Yy]*) sudo reflector -p http,https --country $negara --latest 10 --fastest 5 --save /etc/pacman.d/mirrorlist
 		echo "
 
 Mohon tunggu sedang merubah server repository...
 "
 		sudo pacman -Sy archlinux-keyring --noconfirm --overwrite "*"
 		;;
-		[N/n]*) return
+		[Nn]*) return
 		;;
 		*) error
 		;;
