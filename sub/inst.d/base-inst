@@ -28,7 +28,7 @@ lanjut membuat file Fstab ? [Y/n] :
 " yn
 
 		case $yn in
-			[Y/y]*) sudo genfstab -U ~/fstab
+			[Yy]*) sudo genfstab -U ~/fstab
 			sudo mv ~/fstab $MY_CHROOT/etc
 			if [ "$(ls -a $MY_CHROOT/etc | grep fstab)" = "fstab" ] ;
 				then
@@ -53,7 +53,7 @@ File fstab gagal dibuat, silakan buat secara manual
 					esac
 			fi
 			;;
-			[N/n]*) return
+			[Nn]*) return
 			;;
 			*) error
 			;;
@@ -101,7 +101,7 @@ Kernel dan packages pendukung sudah berhasil diinstall ...
 						esac
 			fi
 			;;
-			[Qq]*) return
+			[Nn]*) return
 			;;
 			*) error
 			;;
