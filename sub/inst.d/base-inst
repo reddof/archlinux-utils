@@ -28,8 +28,8 @@ lanjut membuat file Fstab ? [Y/n] :
 " yn
 
 		case $yn in
-			[Yy]*) sudo genfstab -U ~/fstab
-			sudo mv ~/fstab $MY_CHROOT/etc
+			[Yy]*) sudo genfstab -U $DIR/fstab
+			sudo mv $DIR/fstab $MY_CHROOT/etc
 			if [ "$(ls -a $MY_CHROOT/etc | grep fstab)" = "fstab" ] ;
 				then
 					cat $MY_CHROOT/etc/fstab
